@@ -67,9 +67,6 @@ const colspanBodyArr = [
     }
 ]
 
-// renderColspanBody(makeTableBodyWithHeader(colspanHeaderArr), colspanBodyArr)
-// renderRowspanBody(makeTableBodyWithHeader(rowspanHeaderArr), rowspanBodyArr)
-
 
 class Table{
 
@@ -169,6 +166,43 @@ function eHandler(){
         tr.appendChild(td3);
         tr.appendChild(td4);
         tr.appendChild(td5);
+        body.appendChild(tr);
+    })
+}
+
+const button2 = document.createElement("button");
+button2.innerText = "Colspan Hozzáadás";
+document.body.appendChild(button2);
+button2.addEventListener("click", onButtonClick2.bind(colSpanTable))
+
+/**
+ * @this {colspanTable}
+ */
+function onButtonClick2(){
+    /**
+     * @type {ColspanRowType}
+     */
+    const obj = {
+        author: "Thomas Mann", 
+        title: "Mario és a varázsló", 
+        concepts: "Kisregény"
+    }
+    this.ujMetodus(function(body){
+        const tr = document.createElement("tr");
+
+        const td1 = document.createElement("td");
+        td1.innerText = obj.author;
+        tr.appendChild(td1);
+        
+        const td2 = document.createElement("td");
+        td2.innerText = obj.title;
+        tr.appendChild(td2);
+
+        const td3 = document.createElement("td");
+        td3.innerText = obj.concepts;
+        td3.colSpan = "2";
+        tr.appendChild(td3);
+
         body.appendChild(tr);
     })
 }
