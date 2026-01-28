@@ -1,9 +1,10 @@
 /** 
-* @typedef {{author: string, title1: string, concepts1: string, title2?: string,  concepts2?: string}} RowspanRowType  
-* @typedef {{author: string, title: string, concepts: string, concepts2?: string}} ColspanRowType
-* @typedef {{name: string, colSpan?: number}} HeaderType
-* @callback Logbait
-* @param {HTMLTableSectionElement}
+ * @typedef {{author: string, title1: string, concepts1: string, title2?: string,  concepts2?: string}} RowspanRowType  
+ * @typedef {{author: string, title: string, concepts: string, concepts2?: string}} ColspanRowType
+ * @typedef {{name: string, colSpan?: number}} HeaderType
+ * 
+ * @callback
+ * @param {HTMLTableSectionElement}
 */
 
 /** @type {HeaderType[]}  */
@@ -42,7 +43,7 @@ const colspanBodyArr = [
         author: "Appolliniare", 
         title: "A megsebzett galamb és a szökőkút",
         concepts: "Képvers",  
-        concepts2: "Emlékezés", 
+        concepts2: "Emlékezés"
     },
     {
         author: "Appolliniare", 
@@ -67,113 +68,126 @@ const colspanBodyArr = [
     }
 ]
 
+// renderColspanBody(makeTableBodyWithHeader(colspanHeaderArr), colspanBodyArr)
+// renderRowspanBody(makeTableBodyWithHeader(rowspanHeaderArr), rowspanBodyArr)
 
 class Table{
-
     #tbody;
 
-    get tbody() {
+    get tbody(){
         return this.#tbody;
     }
 
     /**
-     * @param {Logbait} param 
+     * @param {HeaderType[]} tableHeaderArr 
      */
-    name(param) {
-        param(this.#tbody);
+    constructor(tableHeaderArr){
+        this.#tbody = makeTableBodyWithHeader(tableHeaderArr);
     }
 
-    /**
-     * @param {HeaderType[]} tableHeaderArray 
-     */
-    constructor(tableHeaderArray) {
-        this.#tbody = makeTableBodyWithHeader(tableHeaderArray);
+    ujMetodus(param){
+        param(this.#tbody)
     }
 }
 
-
-class ColspanTable extends Table {
+class ColspanTable extends Table{
     /**
-     * @param {HeaderType[]} tableHeaderArray 
+     * @param {HeaderType[]} tableHeaderArr 
      */
-    constructor(tableHeaderArray) {
-        super(tableHeaderArray);
+    constructor(tableHeaderArr){
+        super(tableHeaderArr);
     }
-
     /**
-     * @param {ColspanRowType[]} colSpanArray
+     * @param {ColspanRowType[]} colspanBodyArr
      */
-    render(colSpanArray) {
-        renderColspanBody(this.tbody, colSpanArray);
+    render(colspanBodyArr){
+        renderColspanBody(this.tbody, colspanBodyArr)
     }
 }
 
-
-class RowSpanTable extends Table {
+class RowspanTable extends Table{
     /**
-     * @param {HeaderType[]} tableHeaderArray 
+     * @param {HeaderType[]} tableHeaderArr 
      */
-    constructor(tableHeaderArray) {
-        super(tableHeaderArray);
+    constructor(tableHeaderArr){
+        super(tableHeaderArr);
     }
-
     /**
-     * @param {RowspanRowType[]} rowSpanArray
+     * @param {RowspanRowType[]} rowspanBodyArr
      */
-    render(rowSpanArray) {
-        renderRowspanBody(this.tbody, rowSpanArray);
+    render(rowspanBodyArr){
+        renderRowspanBody(this.tbody, rowspanBodyArr)
     }
 }
 
-const colSpanTable = new ColspanTable(colspanHeaderArr);
-const rowSpanTable = new RowSpanTable(rowspanHeaderArr);
-colSpanTable.render(colspanBodyArr);
-rowSpanTable.render(rowspanBodyArr);
+const colspanTable = new ColspanTable(colspanHeaderArr);
+document.body.appendChild(document.createElement("br"));
+const rowspanTable = new RowspanTable(rowspanHeaderArr);
+colspanTable.render(colspanBodyArr);
+rowspanTable.render(rowspanBodyArr);
+
+document.body.appendChild(document.createElement("br"));
 
 const button = document.createElement("button");
-button.innerText = "rowspan";
-button.addEventListener("click", eHandler.bind(rowSpanTable));
+button.innerText = "Rowspan Hozzáadás";
 document.body.appendChild(button);
- 
+
+document.body.appendChild(document.createElement("br"));
+document.body.appendChild(document.createElement("br"));
+
+button.addEventListener("click", onButtonClick.bind(rowspanTable))
+
 /**
- * @this {RowSpanTable} példány
+ * @this {rowspanTable} ez az a példány ami meghívja a metódust ???
  */
-function eHandler(){
+function onButtonClick(){
     /**
      * @type {RowspanRowType}
      */
     const obj = {
-        author: "Appolliniare",
-        title1: "A megsebzett galamb és a szökőkút", 
+        author: "Franz Kafka",
+        title1: "A per", 
         concepts1: "képvers", 
-        title2: "Búcsú",
-        concepts2: "avantgárd" 
+        title2: "Az átvlátozás", 
+        concepts2: "kisregény" 
     }
-    this.name(function(body){
+    this.ujMetodus(function(body){
         const tr = document.createElement("tr");
+
         const td1 = document.createElement("td");
-        td1.innerText = "Appolliniare";
-        const td2 = document.createElement("td");
-        td2.innerText = "A megsebzett galamb és a szökőkút";
-        const td3 = document.createElement("td");
-        td3.innerText = "képvers";
-        const td4 = document.createElement("td");
-        td4.innerText = "Búcsú";
-        const td5 = document.createElement("td");
-        td5.innerText = "avantgard";
+        td1.innerText = obj.author;
+        td1.rowSpan = 2;
         tr.appendChild(td1);
+        
+        const td2 = document.createElement("td");
+        td2.innerText = obj.title1;
         tr.appendChild(td2);
+
+        const td3 = document.createElement("td");
+        td3.innerText = obj.concepts1;
         tr.appendChild(td3);
-        tr.appendChild(td4);
-        tr.appendChild(td5);
+
         body.appendChild(tr);
+
+        const tr2 = document.createElement("tr");
+        const td4 = document.createElement("td");
+        td4.innerText = obj.title2;
+        tr2.appendChild(td4);
+
+        const td5 = document.createElement("td");
+        td5.innerText = obj.concepts2;
+        tr2.appendChild(td5);
+
+        body.appendChild(tr2);
     })
 }
 
+
+//COLSPAN
 const button2 = document.createElement("button");
 button2.innerText = "Colspan Hozzáadás";
 document.body.appendChild(button2);
-button2.addEventListener("click", onButtonClick2.bind(colSpanTable))
+button2.addEventListener("click", onButtonClick2.bind(colspanTable))
 
 /**
  * @this {colspanTable}
