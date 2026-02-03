@@ -4,10 +4,20 @@ const muvelet = (a, b, callback) => {
 };
 
 const muveletLetrehoz = (jel) => {
-    if (jel == "+");
+    if (jel == "+")
     return (a, b) =>{
         return a + b;
     }
+
+    else if (jel == "-")
+        return (a, b) =>{
+            return a - b;
+        }
+    
+    else if (jel == "*")
+        return (a, b) =>{
+            return a * b;
+        }
 }
 
 export {muvelet, muveletLetrehoz} //{muvelet : muvelet, muveletLetrehoz : muveletLetrehoz}
