@@ -10,3 +10,4 @@ document.body.appendChild(document.createElement("br"));
 const button1 = new Button(input1, input2, "+", resultDiv);
 const button2 = new Button(input1, input2, "-", resultDiv);
 const button3 = new Button(input1, input2, "*", resultDiv);
+document.body.appendChild(resultDiv);
