@@ -1,14 +1,37 @@
 /**
- * @import {functions.js}
+ * @import {FormFieldType,HeaderArrayType,ColspanType,RowspanType} from './functions.js' 
  */
-import { Manager } from './manager.js';
+import {Manager} from './manager.js'
+import data from './data.json' with{type:"json"}
 import { Table } from './table.js';
-import data from './data.json' with {type:'json'};
 
 const manager = new Manager();
-manager.setCallback = (param) =>{
-    console.log(param);
+const table = new Table(data.colspanHeaderArray, manager);
+table.setAppendRow((tbody,elem)=>{
+    const tr = document.createElement('tr')
+    tbody.appendChild(tr)
+
+    createTAbleTD(elem.neve,tr)
+    createTAbleTD(elem.kor,tr)  
+    const td=createTAbleTD(elem.szerelme1,tr) 
+    if(elem.szerelme2){
+        createTAbleTD(elem.szerelme2,tr)
+    }else{
+        td.colSpan=2
+    }
+})
+for(const d of data.colspanDataArr){
+    manager.addElement(d)
 }
-for (const data1 of data.colspanDataArr) {
-    manager.addElement(data1);
+/**
+ * 
+ * @param {string} celltxt 
+ * @param {HTMLTableRowElement} parentRow 
+ * @returns {HTMLTableCellElement}
+ */
+function createTAbleTD(celltxt,parentRow){
+    const td = document.createElement('td')
+    td.innerText=celltxt
+    parentRow.appendChild(td)
+    return td
 }
