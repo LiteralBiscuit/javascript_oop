@@ -2,7 +2,7 @@
  * @import {FromFieldType, HeaderArrayType, ColSpanType, RowSpanType} from './functions.js'
  * 
  * @callback addCallback
- * @param {ColSpanType | RowSpanType}
+ * @param {ColSpanType | RowSpanType} value
  * @returns {void}
  */
 

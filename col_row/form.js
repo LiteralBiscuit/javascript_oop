@@ -2,6 +2,10 @@ import { Manager } from "./manager.js";
 
 class formController{
     /**
+     * @type {HTMLFormElement}
+     */
+    #form;
+    /**
      * @type {Manager}
      */
     #manager;
@@ -17,10 +21,11 @@ class formController{
     constructor(formFieldList, manager){
         this.#manager = manager;
         const form = document.createElement("form");
-        document.body.appendChild(form);
+        this.#form = form;
+        document.body.appendChild(this.#form);
         this.#formFieldElemList = [];
         for(const formField of formFieldList){
-            const formFieldElem = new FormField(formField.id, formField.name, formField.label, formField.required, form);
+            const formFieldElem = new FormField(formField.id, formField.name, formField.label, formField.required, this.#form);
             this.#formFieldElemList.push(formFieldElem);
         }
 
@@ -91,14 +96,6 @@ class FormField{
 
     get name(){
         return this.#name
-    }
-
-    get errordiv(){
-        return this.#errordiv;
-    }
-
-    get required(){
-        return this.#required;
     }
     /**
      * 

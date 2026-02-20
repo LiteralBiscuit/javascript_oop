@@ -13,7 +13,7 @@ class Table{
     #manager;
     /**
      * 
-     * @param {import("./functions").HeaderArrayType} headerArry 
+     * @param {import("./functions").HeaderType[]} headerArry 
      * @param {Manager} manager 
      */
     constructor(headerArry, manager){
