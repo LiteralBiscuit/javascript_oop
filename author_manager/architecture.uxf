@@ -62,7 +62,8 @@ addElement(elem : authorType): void
 -work : string
 -concept : string
 --
-(mindennek getter és setter)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>297</x><y>531</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
+(mindennek getter és setter)
++validate(): boolean</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>297</x><y>531</y><w>90</w><h>36</h></coordinates><panel_attributes>lt=&lt;-
 m1=..*</panel_attributes><additional_attributes>10;10;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>621</y><w>117</w><h>81</h></coordinates><panel_attributes>TableCallback
 --
 -authorList : Author[]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>342</x><y>387</y><w>72</w><h>252</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;250;60;250;60;260</additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>639</y><w>189</w><h>54</h></coordinates><panel_attributes>lt=&lt;-
@@ -73,10 +74,10 @@ addElement() hívja</panel_attributes><additional_attributes>10;10;10;60</additi
 --
 +author : string
 +work : string
-+concept : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>819</x><y>387</y><w>72</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.
++concept : string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>819</x><y>387</y><w>63</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.
 előállítja</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>891</x><y>387</y><w>126</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;.
-előállítja</panel_attributes><additional_attributes>10;60;10;40;120;40;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>711</x><y>513</y><w>261</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;.
-Az AuthorTypot Author oszály példányaivá teszi</panel_attributes><additional_attributes>160;10;160;90;40;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>963</x><y>522</y><w>306</w><h>108</h></coordinates><panel_attributes>FormField
+előállítja</panel_attributes><additional_attributes>10;60;10;40;120;40;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>720</x><y>513</y><w>243</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;.
+Az AuthorTypot Author oszály példányaivá teszi</panel_attributes><additional_attributes>150;10;150;90;30;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>963</x><y>522</y><w>306</w><h>108</h></coordinates><panel_attributes>FormField
 --
 -inputElement : HTMLInputElement
 -errorDiv : HTMLDiveElement
