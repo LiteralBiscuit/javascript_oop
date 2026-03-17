@@ -37,8 +37,8 @@ class AuthorManager{
         author.name = element.author;
         author.work = element.work;
         author.concept = element.concept;
-        this.#authorList.push(author);
         if(author.value()){
+        this.#authorList.push(author);
         this.#addElementResultCallback("Sikeres adatfelvétel.")
         }
         else{
