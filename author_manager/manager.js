@@ -5,6 +5,9 @@
  * @callback addElementResultCallback
  * @param {string} message
  * @returns {void}
+ * @callback ImportResultCallback
+ * @param {string}  message
+ * @returns {void}
 */
 class AuthorManager{
     /**
@@ -15,6 +18,10 @@ class AuthorManager{
      * @type {tableCallback}
      */
     #tableCallback;
+    /**
+     * @type {ImportResultCallback}
+     */
+    #importResultCallback;
 
     #addElementResultCallback;
     constructor(){
@@ -46,13 +53,55 @@ class AuthorManager{
         }
     }
 
+    /**
+     * 
+     * @param {import(".").AuthorType[]} elementList 
+     */
+    addElementList(elementList){
+        for (const element of elementList) {
+            const author = new Author();
+            author.name = element.author;
+            author.work = element.work;
+            author.concept = element.concept;
+            author.concept = element.concept;
+            if(author.value()){
+                this.#authorList.push(author);
+                this.#importResultCallback("Siker");
+            }
+            else{
+                this.#importResultCallback("Sikertelen");
+                break;
+            }
+        }
+    }
+
 
     getAllElement(){
         this.#tableCallback(this.#authorList);
     }
 
+    /**
+     * @returns {string}
+     */
+    getExportString(){
+        const result = [];
+        for (const author of this.#authorList) {
+            result.push(`${author.name};${author.work};${author.concept}`);
+        }
+        return result.join("\n");
+    }
+
+    /**
+     * @param {addElementResultCallback} value 
+     */
     set addElementResultCallback(value){
         this.#addElementResultCallback = value;
+    }
+    /**
+     * @param {ImportResultCallback} value 
+     */
+    set importResultCallback(value){
+        this.#importResultCallback = value;
     }
 }
  
