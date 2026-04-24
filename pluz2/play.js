@@ -71,4 +71,4 @@ class CardArea extends PlayArea{
 
 class ResultArea extends PlayArea{
 
-}
+} 
