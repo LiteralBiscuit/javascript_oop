@@ -55,10 +55,11 @@ class FormView extends ViewElement{
    /**
     * @type {import("./index.js").AuthorType}
     */
-   let result = {}
-   for (const field of this.#formInputList) {
-      if(field.validate()){
-      result[field.name] = field.value;
+   let result = {} // AuthorType object
+   for (const field of this.#formInputList) { // forminput list iterálás
+      if(field.validate()){ // inputok validálása
+      result[field.name] = field.value; // a result object formInputField name értékével megyegyező nevű tulajdonságnak
+      // megadjuk a forminput beviteli mezőjének az értékét
       }
    }
    return result;

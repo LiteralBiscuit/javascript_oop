@@ -4,7 +4,7 @@ import { AuthorManager } from "./manager.js";
 import { NavBar } from "./navBar.js"
 import { TableView } from "./table.js";
 
-const formFields = [{
+const formFields = [{ //formfieldek listája (ez alapján példányosít a FormController)
     id: 'author',
     label: 'Név',
     name: 'author'
@@ -20,8 +20,8 @@ const formFields = [{
     name: 'concept'
 }]
 
-const headerArray = ['Szerző', 'Mű', 'Fogalom']
-const manager = new AuthorManager();
+const headerArray = ['Szerző', 'Mű', 'Fogalom'] // header lista
+const manager = new AuthorManager();// Authormanager
 
 
 
@@ -31,21 +31,21 @@ const manager = new AuthorManager();
  */
 
 
-const navBar = new NavBar();
-navBar.appendTo(document.body);
+const navBar = new NavBar(); // NavBar
+navBar.appendTo(document.body); //add to body
 
-const tableView = new TableView('Table', headerArray, manager);
-tableView.appendTo(document.body);
-navBar.addViewElement('Táblázat', tableView);
+const tableView = new TableView('Table', headerArray, manager); // table id 'Table'
+tableView.appendTo(document.body); //add table to body
+navBar.addViewElement('Táblázat', tableView); //add table radio button to navbar
 
-const formView = new FormView('TableForm', formFields, manager);
-formView.appendTo(document.body);
-navBar.addViewElement('Form', formView);
+const formView = new FormView('TableForm', formFields, manager); //formkontroller
+formView.appendTo(document.body); // add to body
+navBar.addViewElement('Form', formView); //add form radio button
 
-const importExport = new ImportView("importexport", manager);
-importExport.appendTo(document.body);
-navBar.addViewElement("import/export", importExport);
+const importExport = new ImportView("importexport", manager); //importexport
+importExport.appendTo(document.body);// add to body
+navBar.addViewElement("import/export", importExport); //add radi buttton to navbar
 
-navBar.activate(tableView.id);
+navBar.activate(tableView.id);// megjelenítjük a táblázatot az id-je alapján (mint deafult view)
 
 

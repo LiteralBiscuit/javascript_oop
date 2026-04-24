@@ -9,21 +9,22 @@
  * @param {string}  message
  * @returns {void}
 */
-class AuthorManager{
+class AuthorManager{ //authormanager class def
     /**
      * @type {Author[]}
      */
-    #authorList;
+    #authorList; //authorok listája
     /**
      * @type {tableCallback}
      */
-    #tableCallback;
+    #tableCallback; //kibaszott callback
     /**
      * @type {ImportResultCallback}
      */
-    #importResultCallback;
+    #importResultCallback; //kibaszott callback
 
-    #addElementResultCallback;
+    #addElementResultCallback; //kibaszott callback
+    // callback-ek használatával komunikálunk az osztályok között (valamiért)
     constructor(){
         this.#authorList = [];
     }
@@ -105,7 +106,7 @@ class AuthorManager{
     }
 }
  
-class Author{
+class Author{ // Author entitánsosztály def
     /**
      * @type {string}
      */
@@ -155,9 +156,10 @@ class Author{
     /**
      * @returns {boolean}
      */
-    value(){
-        return this.#name && this.#concept && this.#work;
+    value(){ //ez amúgy validate() csak balfasz voltam
+        return this.id >=0 && this.#name && this.#concept && this.#work; // ha minden jó akkor true ha nem akkor false
     }
+    //id, name, work, concept mind string, midennek geter és setter
 }
 
 export {AuthorManager}
