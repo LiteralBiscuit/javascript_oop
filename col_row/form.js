@@ -29,8 +29,6 @@ class formController{
             this.#formFieldElemList.push(formFieldElem);
         }
 
-
-
         //inpute mezők render
         const button = document.createElement("button");
         button.innerText = "Küldés";
@@ -131,7 +129,7 @@ class FormField{
      */
     validate(){
         let result = true;
-        if(this.#required && !this.#input){
+        if(this.#required && !this.#input.value){
             result = false;
             this.#errordiv.innerText = "Kötelező";
         }
